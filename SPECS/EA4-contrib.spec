@@ -1,6 +1,8 @@
 Name: cpanel-ea4-contrib-release
 Version: 0.1
-Release: 1%{?dist}
+# Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4602 for more details
+%define release_prefix 2
+Release: %{release_prefix}%{?dist}.cpanel
 Summary: Access the EA4-contrib repository
 
 Group: Development/Tools
@@ -24,5 +26,8 @@ rm -rf %{buildroot}
 %{_sysconfdir}/yum.repos.d/EA4-contrib.repo
 
 %changelog
+* Thu Apr 13 2023 Dan Muey <dan@cpanel.net> - 0.1-2
+- ZC-10895: make `From repo` have OS info akin to `APT-Sources`
+
 * Wed Mar 01 2017 Jacob Perkins <jacob.perkins@cpanel.net> - 0.1-1
 - Initial creation
